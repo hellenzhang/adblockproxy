@@ -7,5 +7,9 @@
 	},
 	"dependencies": {
 		"http-proxy": "*"
+	},
+	"scripts": { 
+		"start": "P=`ps ax | grep 'app.js -h proxy' | grep -v grep | awk '{print $1}'`; if [ \"$P\" != \"\" ];then echo 'Server has started'; else echo 'Start server'; `NODE_ENV=production nohup node app.js -h proxy >> logs/server.log 2>&1 &`; ps ax | grep 'app.js -h proxy' | grep -v grep | awk '{print $1}' > logs/server.pid; fi;"
+	  ,"stop": "P=`ps ax | grep 'app.js -h proxy' | grep -v grep | awk '{print $1}'`; if [ \"$P\" != \"\" ];then kill $P; rm logs/server.pid; echo 'Stop server'; else echo 'Server not found';fi;"
 	}
 }
