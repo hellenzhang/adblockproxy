@@ -13,6 +13,11 @@ var youku = fs.readFileSync("./youku.txt", "utf8")
 http.createServer(function (req, res) {
 	//console.log(req.url);
 	//console.log(req.headers);
+	var host = req.headers["host"];
+	if(host.indexOf("qq.com") != -1){
+		res.write('<?xml version="1.0" encoding="Utf-8"?><root decs="video-web"></root>');
+		res.end();
+	}
 	if(req.url == "/youku.mp4"){
 		var path = "." + req.url;
 		var stat = fs.statSync(path);
