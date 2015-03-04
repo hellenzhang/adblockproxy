@@ -2483,7 +2483,7 @@ var direct = 'DIRECT;';
 
 var hasOwnProperty = Object.hasOwnProperty;
 var proxy_block = "PROXY internalserver:80";
-var proxy_ad = "PROXY 106.187.92.220:8123";
+proxy_block = "PROXY 106.187.92.220:8123";
 
 function FindProxyForURL(url, host) {
 
