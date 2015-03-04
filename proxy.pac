@@ -2482,10 +2482,15 @@ var proxy = "SOCKS5 127.0.0.1:1983; SOCKS 127.0.0.1:1983; DIRECT;";
 var direct = 'DIRECT;';
 
 var hasOwnProperty = Object.hasOwnProperty;
+var proxy_block = "PROXY internalserver:80";
+var proxy_ad = "PROXY 106.187.92.220:8123";
 
 function FindProxyForURL(url, host) {
-	if(shExpMatch(url,"*.youku.com/playlist/m3u8?keyframe=0&*")){return "PROXY 106.187.92.220:8123";}
-	if(shExpMatch(url,"http://lives.l.qq.com/livemsg*")){return "PROXY 106.187.92.220:8123";}
+
+	if(shExpMatch(url,"http://ad.api.3g.youku.com*")){return proxy_block;}
+	if(shExpMatch(url,"http://lives.l.qq.com/livemsg*")){return proxy_block;}
+	if(shExpMatch(url,"http://m.aty.sohu.com/m*")){return proxy_block;}
+
 	var suffix;
 	var pos = host.lastIndexOf('.');
 	pos = host.lastIndexOf('.', pos - 1);
